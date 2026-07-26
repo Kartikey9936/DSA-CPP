@@ -98,3 +98,59 @@ public:
 
     }
 };
+
+REVERSE LINKED LIST by using stack fifo
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* temp = head;
+        stack<int> st;
+        while(temp != NULL){
+            st.push(temp->val);
+            temp = temp->next;
+        }
+        temp = head;
+        while(temp != NULL){
+            temp->val = st.top();
+            st.pop();
+            temp = temp->next;
+        }
+        return head;
+
+        
+    }
+};
+
+
+reverse linked list 2
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if(left == right ) return head;
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode* prev = dummy;
+        for(int i = 1; i<left ; i++){
+            prev = prev->next;
+
+        }
+        ListNode* curr = prev->next;
+        ListNode* prevnode = NULL;
+        ListNode* currnode = curr;
+        for(int i =0;i<right-left+1;i++){
+            ListNode* next_node = currnode->next;
+            currnode->next = prevnode;
+            prevnode = currnode;
+            currnode = next_node;
+
+
+        }
+        prev->next = prevnode;
+        curr->next = currnode;
+
+        return dummy->next;
+
+        
+    }
+    
+};
