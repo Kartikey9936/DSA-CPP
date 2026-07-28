@@ -154,3 +154,122 @@ public:
     }
     
 };
+
+check if linked list has cycle or not
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast != NULL && fast->next != NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast) return true;
+
+        }
+        return false;
+        
+        
+
+        
+    }
+    
+};
+
+
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast != NULL && fast->next != NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast){
+                slow = head;
+               while (slow != fast) {
+                slow = slow->next;
+                fast = fast->next;
+                }
+                return slow;
+
+            }
+            
+            
+
+        }
+        return NULL;
+
+        
+
+        
+    }
+};
+
+class Solution {
+public:
+    ListNode* reverse(ListNode* head){
+        if(head == NULL || head->next == NULL ) return head;
+        ListNode* newhead = reverse(head->next);
+        ListNode* front = head->next;
+        front->next = head;
+        head->next = NULL;
+        return newhead;
+    }
+    
+
+    bool isPalindrome(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast->next != NULL && fast->next->next != NULL){
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        ListNode* newhead = reverse(slow->next);
+        ListNode* l = head;
+        ListNode* r = newhead;
+        while(r != NULL){
+            if( l->val != r->val){
+            reverse(newhead);
+            return false;
+            }
+
+            l = l->next;
+            r = r->next;
+        }
+        reverse(newhead);
+        return true;
+
+        
+    }
+};
+
+remove nth node from the end of linked list
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        // ListNode* dummy = new ListNode(0);
+        
+        ListNode* fast = head;
+        for(int i = 0;i<n;i++){
+            fast = fast->next;
+        }
+        if(fast == NULL ) return head->next;
+        ListNode* slow = head;
+        while(fast->next != NULL){
+            slow = slow->next;
+            fast = fast->next;
+
+        }
+        ListNode* delnode = slow->next;
+        slow->next = slow->next->next;
+        delete(delnode);
+        return head;
+
+
+
+
+        
+    }
+};
