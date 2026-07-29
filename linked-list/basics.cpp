@@ -277,3 +277,27 @@ public:
 
 fast->next != NULL && fast != NULL   ❌ wrong order → crash
 
+
+
+
+
+TWO Y SHAPED LL INTERSECTION
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if(headA == NULL || headB == NULL ) return NULL;
+        ListNode* l = headA;
+        ListNode* r = headB;
+        while(l != r){
+            l = l->next;
+            r= r->next;
+            if(l == r) return l;
+            else if(l == NULL) l = headB;
+            else if (r == NULL) r = headA;
+        }
+        return l;
+
+        
+    }
+};
