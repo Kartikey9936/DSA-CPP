@@ -273,3 +273,7 @@ public:
         
     }
 };
+
+
+fast->next != NULL && fast != NULL   ❌ wrong order → crash
+
