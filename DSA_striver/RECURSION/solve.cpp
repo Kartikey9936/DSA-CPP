@@ -100,3 +100,32 @@ public:
         
     }
 };
+
+class Solution {
+public: 
+       void combination(int num,vector<int> &ds,int k , int target,vector<vector<int>>& ans){
+        if(k==0 && target == 0){
+            ans.push_back(ds);
+            return;
+        }
+        if(k==0 && target<0){
+            return;
+        }
+        for(int i = num ; i<=9;i++){
+            ds.push_back(i);
+            combination(i+1,ds,k-1,target-i,ans);
+            ds.pop_back();
+        }
+       
+        
+       }
+
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+        combination(1,ds,k,n,ans);
+        return ans;
+
+        
+    }
+};
