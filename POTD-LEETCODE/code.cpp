@@ -23,3 +23,44 @@ public:
     }
 };
 
+https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/
+class Solution {
+public:
+    int numOfSubarrays(vector<int>& arr, int k, int threshold) {
+        int left = 0;
+        int sum = 0;
+        int cnt = 0;
+        for(int right = 0;right<arr.size();right++){
+            sum = sum +arr[right];
+            if(right - left +1 >k){
+                sum = sum -arr[left];
+                left++;
+            }
+            if(right-left +1 ==k && sum >= threshold*k){
+                cnt++;
+            }
+
+        }
+        return cnt;
+    }
+};
+
+class Solution {
+public:
+    int maximumLengthSubstring(string s) {
+        unordered_map<int,int> mpp;
+        int left = 0;
+        int length =0;
+        for(int right = 0;right<s.size();right++){
+            mpp[s[right]]++;
+            while(mpp[s[right]]>2){
+                mpp[s[left]]--;
+                left++;
+            }
+            length = max(length,right-left+1);
+
+        }
+        return length;
+          
+    }
+};
