@@ -33,3 +33,38 @@ public:
     }
 };
 
+boolean flag pattern 
+bool flag = true;
+
+for (int i = 0; i < n; i++) {
+
+    if (/* condition is violated */) {
+        flag = false;
+        break;
+    }
+}
+
+if (flag) {
+    // condition was true for every element
+}
+
+class Solution {
+public:
+    int longestSubsequence(vector<int>& nums) {
+        int xor_c = 0;
+        int n = nums.size();
+        if (n == 0) return 0;
+        bool allzero = true;
+        for(int i =0;i<n;i++){
+            xor_c = xor_c^nums[i];
+            if(nums[i] != 0){
+                allzero = false;
+            }
+        }
+        if(allzero) return 0;
+        if(xor_c == 0) return n-1;
+        return n;
+    }
+    
+};
+
