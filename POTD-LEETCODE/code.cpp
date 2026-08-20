@@ -65,3 +65,105 @@ public:
     }
 };
 
+only 800 cases https://leetcode.com/problems/find-the-largest-almost-missing-integer/?envType=daily-question&envId=2026-08-18
+class Solution {
+public:
+    int largestInteger(vector<int>& nums, int k) {
+        int left = 0;
+        int n = nums.size();
+        int ans = -1;
+        if (k == n) {
+        
+
+        unordered_map<int, int> cnt;
+
+        for (int right = 0; right < n; right++) {
+
+            if (right - left + 1 > k) {
+                left++;
+            }
+
+            if (right - left + 1 == k) {
+
+                unordered_map<int, int> mpp;
+
+                // Count frequency in current window
+                for (int i = left; i <= right; i++) {
+                    mpp[nums[i]]++;
+                }
+
+                // Count how many windows contain the number exactly once
+                for (auto it : mpp) {
+                    if (it.second == 1) {
+                        cnt[it.first]++;
+                    }
+                }
+            }
+        }
+
+        // Find largest number appearing in exactly one window
+        for (auto it : cnt) {
+            if (it.second == 1) {
+                ans = max(ans, it.first);
+            }
+        }
+
+        return ans;
+    }
+};
+
+optimizexd 
+class Solution {
+public:
+    int largestInteger(vector<int>& nums, int k) {
+        int n = nums.size();
+        unordered_map<int, int> windowCount;
+
+        // Check every window of size k
+        for (int left = 0; left <= n - k; left++) {
+
+            unordered_set<int> seen;
+
+            for (int i = left; i < left + k; i++) {
+                seen.insert(nums[i]);
+            }
+
+            // Count how many windows contain each number
+            for (int x : seen) {
+                windowCount[x]++;
+            }
+        }
+
+        int ans = -1;
+
+        // Number appearing in exactly one window
+        for (auto it : windowCount) {
+            if (it.second == 1) {
+                ans = max(ans, it.first);
+            }
+        }
+
+        return ans;
+    }
+};
+
+20 aug 
+vector<int> arr1;
+vector<int> arr2;
+
+arr1.push_back(nums[0]);
+arr2.push_back(nums[1]);
+
+for(int i = 2; i < nums.size(); i++){
+    if(arr1.back() > arr2.back()){
+        arr1.push_back(nums[i]);
+    }
+    else{
+        arr2.push_back(nums[i]);
+    }
+    for()
+    for()
+
+
+
+}
