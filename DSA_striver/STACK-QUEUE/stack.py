@@ -155,5 +155,69 @@ public:
 };
 
 
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        int n = asteroids.size();
+        vector<int> ans;
+        for(int i =0;i<n;i++){
+            ans.push_back(asteroids[i]);
+            if(asteroids[i]<0){
+                for(int j = i-1;j>=0;j--){
+                    if(ans.back()<0 && abs(asteroids[j])>ans.back()){
+                        ans.pop_back();
+                        ans.push_back(asteroids[j] - ans.back());
+
+                    }
+
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        int n = asteroids.size();
+        stack<int> st;
+
+        for(int i = 0; i < n; i++) {
+            if(asteroids[i] > 0) {
+                st.push(asteroids[i]);
+            }
+            else if (asteroids[i] < 0) {
+                while(!st.empty() && st.top()>0 && st.top() < abs(asteroids[i])) {
+                    st.pop();
+                }
+                if(!st.empty() && st.top() == abs(asteroids[i])){
+                    st.pop();
+                }
+                else if(st.empty() || st.top()<0){
+                    st.push(asteroids[i]);
+                }
+                
+            }
+            
+            // else if(asteroids[i] < 0 && abs(asteroids[i])== st.top()){
+            //     st.pop();
+            // }
+        }
+
+        vector<int> ans;
+
+        while(!st.empty()) {
+            ans.push_back(st.top());
+            st.pop();
+        }
+
+        reverse(ans.begin(), ans.end());
+
+        return ans;
+    }
+};
+
 
 
