@@ -223,3 +223,63 @@ public:
     }
 };
 
+leetcode 448 
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        
+        // unordered_set<int> st;
+        unordered_map<int,int> mpp;
+        vector<int> ans;
+        for(int i =0;i<nums.size();i++){
+            mpp[nums[i]]++;
+        }
+        for(int i = 1;i<=nums.size();i++){
+            if(mpp[i] ==0){
+                ans.push_back(i);
+            }
+        }
+
+        // // Put all numbers into set
+        // for(int num : nums) {
+        //     st.insert(num);
+        // }
+
+        // // Check numbers from 1 to n
+        // // if x is in set st.find(i) != st.end())
+        // for(int i = 1; i <= nums.size(); i++) {
+        //     if(st.find(i) == st.end()) { 
+        //         ans.push_back(i);
+        //     }
+        // }
+
+        return ans;
+    }
+};
+
+optimal is marking -ve to visited number 
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        
+        vector<int> ans;
+        int n = nums.size();
+
+        // Mark numbers that appear
+        for(int i = 0; i < n; i++) {
+            int x = abs(nums[i]);
+            nums[x - 1] = -abs(nums[x - 1]);
+        }
+
+        // Positive positions are missing
+        for(int i = 0; i < n; i++) {
+            if(nums[i] > 0) {
+                ans.push_back(i + 1);
+            }
+        }
+
+        return ans;
+    }
+};
+
+
