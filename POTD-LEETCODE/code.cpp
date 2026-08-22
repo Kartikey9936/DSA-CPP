@@ -168,3 +168,34 @@ for(int i = 2; i < nums.size(); i++){
 
 }
 
+https://leetcode.com/problems/check-divisibility-by-digit-sum-and-product/?envType=daily-question&envId=2026-08-22
+class Solution {
+public:
+    bool checkDivisibility(int n) {
+        int sum = 0;
+        int product = 1;
+        int num = n;
+        while(n>0){
+            sum = sum +n%10;
+            product= product*(n%10);
+            n =n/10;
+             
+        }
+        int total = sum + product;
+        if(num%total == 0){
+        return true;}
+        return false;
+       
+        
+    }
+};
+
+int num = n;  // preserve original
+
+while(n > 0) {
+    // modify n
+}
+
+// use num for the original number
+
+also use product*(n%10) not product*n%10
