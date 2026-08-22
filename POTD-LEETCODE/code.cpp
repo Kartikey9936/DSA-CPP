@@ -199,3 +199,27 @@ while(n > 0) {
 // use num for the original number
 
 also use product*(n%10) not product*n%10
+
+kth smallest coin value https://leetcode.com/problems/find-the-kth-smallest-value-of-a-matrix-with-sorted-rows-and-columns/?envType=daily-question&envId=2026-08-23
+class Solution {
+public:
+    long long findKthSmallest(vector<int>& coins, int k) {
+        set<long long> ans;
+        for(int i=0;i<coins.size();i++){
+            for(int j =1;j<k;j++){
+                ans.insert(1LL*coins[i]*j);
+            }
+        }
+        int final_coin;
+        for(auto it:ans){
+            k--;
+            if(k==0){
+                final_coin=it;
+                break;
+            }
+        }
+        return final_coin;
+        
+    }
+};
+
