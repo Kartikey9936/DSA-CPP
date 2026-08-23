@@ -221,3 +221,32 @@ public:
 
 
 
+brute force not working 
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+        
+        for(int i =1;i<=k;i++){
+            if(num.size() == k){
+            num = "0";
+            break;
+        }
+            string smallest = num;
+            for(int i =0;i<num.size();i++){
+                string temp = num.substr(0, i) + num.substr(i + 1);
+                if(temp<smallest){
+                    smallest = temp;
+                }
+
+            }
+            num = smallest;
+             // Remove leading zeros
+        while(num.size() > 1 && num[0] == '0') {
+            num.erase(0, 1);
+        }
+        }
+        return num;
+        
+    }
+};
+
