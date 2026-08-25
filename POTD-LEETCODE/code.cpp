@@ -307,4 +307,24 @@ public:
     }
 };
 
+optimal solution just traverse array and put all into map then check multiple present or not 
 
+class Solution {
+public:
+    int missingMultiple(vector<int>& nums, int k) {
+        unordered_map<int,int> mpp;
+        for(int i =0;i<nums.size();i++){
+            mpp[nums[i]]++;
+
+        }
+        int multi =k;
+        while(mpp.find(multi) != mpp.end()){
+            multi = multi+k;
+        }
+        return multi;
+      
+       
+
+        
+    }
+};
