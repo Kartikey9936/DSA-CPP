@@ -282,4 +282,29 @@ public:
     }
 };
 
+only 609 test cases passed https://leetcode.com/problems/find-the-largest-almost-missing-integer/?envType=daily-question&envId=2026-08-18
+
+class Solution {
+public:
+    int missingMultiple(vector<int>& nums, int k) {
+        int maxi = 0;
+        for(int i =0;i<nums.size();i++){
+            if(nums[i]%k == 0)  maxi = max(maxi,nums[i]);
+            
+           
+           
+           
+        }
+        for(int i =0;i<nums.size();i++){
+            if(k == nums[i]){
+                return maxi +k;
+            }
+           
+        }
+        return k;
+
+        
+    }
+};
+
 
