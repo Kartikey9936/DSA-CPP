@@ -328,3 +328,33 @@ public:
         
     }
 };
+
+it only passed 609 test cases  leetcode.com/problems/shortest-beautiful-substring/?envType=daily-question&envId=2026-08-25
+class Solution {
+public:
+    string shortestBeautifulSubstring(string s, int k) {
+        int left = 0;
+        int mini = 0;
+        string ans;
+
+        unordered_map<int,int> mpp;
+        for(int right = 0;right<s.size();right++){
+            mpp[s[right]]++;
+            while(mpp['1'] ==k){
+                // int small= right - left +1;
+                // mini = min(small,mini);
+                // left++;
+                ans = s.substr(left,right-left+1);
+                mpp[s[left]]--;
+                left++;
+                
+
+
+            }
+
+        }
+        return ans;
+        
+    }
+};
+
