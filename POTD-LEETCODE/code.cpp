@@ -387,3 +387,20 @@ public:
         
     }
 };
+optimal solution me jab bhi non zero aye swap krdo left pointer ke sath and left++ krdo
+zero ane pe nhi karna swap;
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int left =0;
+        for(int right =0;right<n;right++){
+            if(nums[right]!=0){
+                swap(nums[right],nums[left]);
+                left++;
+            }
+        }
+
+        
+    }
+};
