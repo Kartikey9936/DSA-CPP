@@ -358,3 +358,32 @@ public:
     }
 };
 
+
+leetcode 283
+here void function so we can not return anything 
+we copy the ans vector to nums vector at the end of function
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int cnt = 0;
+        vector<int>ans;
+        for(int i =0;i<n;i++){
+            if(nums[i]!=0){
+                ans.push_back(nums[i]);
+            }
+            else{
+                cnt++;
+            }
+        }
+        for(int i=0;i<cnt;i++){
+            ans.push_back(0);
+        }
+        // return ans;
+        // kuch return nhi hoga 
+        nums = ans;
+
+
+        
+    }
+};
