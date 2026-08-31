@@ -404,3 +404,49 @@ public:
         
     }
 };
+
+
+2058. Find the Minimum and Maximum Number of Nodes Between Critical Points
+class Solution {
+public:
+    vector<int> nodesBetweenCriticalPoints(ListNode* head) {
+        ListNode* prev = head;
+        ListNode* curr = head->next;
+        int first = -1;
+        int last = -1;
+        int pos = 1;
+        int maxd = INT_MIN;
+        int mind = INT_MAX;
+        while(curr->next != NULL){
+            ListNode* front = curr->next;
+            if((curr->val > prev->val && curr->val > front->val) || (curr->val < prev->val && curr->val < front->val)){
+                if (first == -1) first = pos;
+                else{
+                    mind = min(mind,pos - last);
+                    maxd = max(maxd,pos-first);
+                }
+
+                last = pos;
+                 
+                // prev = curr;
+                // curr = front;
+                // front = front->next;
+                
+            }
+            // else if(curr->val < prev->val && curr->val < front->val){
+                
+            //     prev = curr;
+            //     curr = front;
+            //     front = front->next;
+            // }
+            prev = curr;
+            curr = front;
+            pos++;
+            
+
+        }
+        if (first == -1 || first == last) return {-1, -1};
+        return {mind,maxd};
+        
+    }
+};
