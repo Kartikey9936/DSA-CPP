@@ -25,6 +25,7 @@ public:
     }
 };
 
+leetcode 50 optimal solution
 class Solution {
 public:
     int countGoodNumbers(long long n) {
@@ -42,7 +43,7 @@ public:
     }
 };
 
-
+leetcode 50
 class Solution {
 public:
     void findcombination(int ind ,int target, vector<int>& candidates,vector<vector<int>> &ans,vector<int>&ds ){
@@ -71,7 +72,7 @@ public:
     }
 };
 
-
+leetcode 198
 class Solution {
 public:
       void subset(int ind,vector<int>& nums, vector<int>& ds ,vector<vector<int>> &ans){
@@ -101,6 +102,7 @@ public:
     }
 };
 
+leetcode 216 without duplicate
 class Solution {
 public: 
        void combination(int num,vector<int> &ds,int k , int target,vector<vector<int>>& ans){
@@ -173,5 +175,35 @@ public:
         return ans;
 
 
+    }
+};
+
+leetcode.com/problems/subsets/
+class Solution {
+public:
+    void backtrack(vector<int>& nums, vector<int>& ds, int index,
+                   vector<vector<int>>& ans) {
+        
+        if (index == nums.size()) {
+            ans.push_back(ds);
+            return;
+        }
+
+        // Don't take
+        backtrack(nums, ds, index + 1, ans);
+
+        // Take
+        ds.push_back(nums[index]);
+        backtrack(nums, ds, index + 1, ans);
+        ds.pop_back();
+    }
+
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+
+        backtrack(nums, ds, 0, ans);
+
+        return ans;
     }
 };
