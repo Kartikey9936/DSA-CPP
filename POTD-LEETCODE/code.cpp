@@ -450,3 +450,56 @@ public:
         
     }
 };
+
+
+//potd 3 sep 2026
+//take many example then onserve pattern 
+// if min element is odd = true always 
+// if min element is even and there is one odd in array then false; if all even then true;
+
+class Solution {
+public:
+    bool uniformArray(vector<int>& nums1) {
+        int mini = *min_element(nums1.begin(), nums1.end());
+        
+
+        // Minimum is even
+        if (mini % 2 == 0) {
+            for (int num : nums1) {
+                if (num % 2 != 0)
+                    return false;
+            }
+            return true;
+        }
+
+        // Minimum is odd
+        return true;
+    }
+};
+
+brute force solution 
+class Solution {
+public:
+    int firstStableIndex(vector<int>& nums, int k) {
+        int n = nums.size();
+        int maxi = 0;
+        for(int i =0;i<n;i++){
+            maxi = max(nums[i],maxi);
+            int mini = nums[i];
+            for(int j =i;j<n;j++){
+                
+                if(nums[j]<mini){
+                    mini = nums[j];
+                }
+                
+            }
+            if(maxi - mini <= k){
+                return i;
+            }
+            
+
+        }
+        return -1;
+        
+    }
+};
