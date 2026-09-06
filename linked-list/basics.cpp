@@ -301,3 +301,42 @@ public:
         
     }
 };
+
+
+leetcode 1019 next greater node in linked list
+1.approch 1: reverse the linked list and use stack to find next greater element then reverse the answer vector and return it
+2. first convert ll into array then find next greater element using stack and return the answer vector
+3.use stack<pair<int,int>> to store the value and index of the node
+
+class Solution {
+public:
+    vector<int> nextLargerNodes(ListNode* head) {
+        ListNode* curr = head;
+        ListNode* prev = nullptr;
+        while(curr != NULL){
+            ListNode* next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr= next;
+        }
+        //now head of reverse is in prev 
+        curr = prev;
+        stack<int>st;
+        vector<int>ans;
+        while(curr){
+            while(!st.empty() && curr->val >= st.top()){//Because we want a strictly greater element. so remove it 
+                st.pop();
+            }
+            if(!st.empty()) ans.push_back(st.top());
+            else ans.push_back(0);
+            st.push(curr->val);
+
+            curr = curr->next;//next iteration
+
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+
+        
+    }
+};
