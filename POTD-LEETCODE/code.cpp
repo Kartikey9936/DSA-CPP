@@ -503,3 +503,76 @@ public:
         
     }
 };
+
+https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/?envType=daily-question&envId=2026-10-06
+class Solution {
+public:
+    int minAddToMakeValid(string s) {
+        int n = s.size();
+        int cnt =0;
+        stack<int>st;
+        for(int i =0;i<n;i++){
+            
+            if(s[i]=='('){
+                st.push(s[i]);
+
+            }
+            else if(s[i]==')'){
+                if(!st.empty() && st.top() =='('){
+                    // cnt--;
+                    st.pop();
+                }
+                else{
+                    cnt++;
+                }
+            }
+            // else{
+            //     st.pop();
+            //     cnt--;
+            // }
+        }
+        cnt += st.size();
+        return cnt; 
+    }
+};
+
+1807. Evaluate the Bracket Pairs of a String
+
+class Solution {
+public:
+    string evaluate(string s, vector<vector<string>>& knowledge) {
+        int n = s.size();
+        // vector<vector<string>> ans;
+        unordered_map<string,string> mpp;
+        for( auto it  : knowledge){
+            mpp[it[0]] = it[1];
+
+        }
+        string ans ="";
+        for(int i =0;i<n;i++){
+            if(s[i]=='('){
+                int j =i+1;
+                while(s[j] != ')'){
+                    j++;
+                }
+                string key = s.substr(i+1,j-i-1 );
+
+                if(mpp.find(key) != mpp.end()){
+                    ans += mpp[key];
+                }
+                else{
+                    ans += '?';
+                }
+                i = j; //updating the value of i
+                
+
+            }
+            else {
+                ans += s[i];
+            }
+           
+        }
+        return ans;
+        
+    }
+};

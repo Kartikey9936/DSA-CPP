@@ -84,3 +84,11 @@ public:
     }
 };
 
+//tree question pattern
+if(root == NULL)
+    return something;
+
+left = solve(root->left);
+right = solve(root->right);
+
+return combine(left, right, root);
