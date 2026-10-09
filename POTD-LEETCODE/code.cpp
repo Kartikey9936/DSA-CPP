@@ -576,3 +576,42 @@ public:
         
     }
 };
+
+
+leetcode 1541. Minimum Insertions to Balance a Parentheses String
+class Solution {
+public:
+    int minInsertions(string s) {
+        int n =s.size();
+        int open =0;// unmatched '('
+        int ans =0;//no of '(' required
+        int i =0;
+        while(i<n){
+            if(s[i]=='('){
+                open++;
+                i++;
+            }
+            else{
+                if(open>0){
+                    open--;
+                }
+                else{
+                ans++; 
+                }
+                if(i+1<n && s[i+1] == ')'){
+                    i += 2;
+                }
+                else{
+                    ans++;
+                    i++;
+
+                }
+
+            }
+        }
+    
+        ans += open*2;
+        return ans;
+        
+    }
+};
