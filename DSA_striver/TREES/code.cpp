@@ -85,6 +85,8 @@ public:
 };
 
 //tree question pattern
+//first see bfs- level order traversal need 
+// or dfs recursive traversal need (solve small small sub tree start from small unit then make edge cases)
 if(root == NULL)
     return something;
 
@@ -92,3 +94,5 @@ left = solve(root->left);
 right = solve(root->right);
 
 return combine(left, right, root);
+
+
