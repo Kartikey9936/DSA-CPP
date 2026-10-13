@@ -95,4 +95,72 @@ right = solve(root->right);
 
 return combine(left, right, root);
 
+leetcode right view of bt 
+if left view i = 0 
+just level order traversal and we take first element of level left view if last element right view 
+
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+         vector<int> ans;
+    if (!root) return ans;
+
+    queue<TreeNode*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        int size = q.size();
+
+        for (int i = 0; i < size; i++) {
+            TreeNode* node = q.front();
+            q.pop();
+
+            if (i == size - 1)
+                ans.push_back(node->val);
+
+            if (node->left)
+                q.push(node->left);
+
+            if (node->right)
+                q.push(node->right);
+        }
+    }
+
+    return ans;
+}
+        
+};
+
+
+leetcode https://leetcode.com/problems/symmetric-tree/description/
+just devide left and right subtree then traverse root l r == root r l 
+class Solution {
+public:
+    bool isMirror(TreeNode* left, TreeNode* right) {
+        //here left and rights are nodes of subtree
+
+        // Both nodes are NULL
+        if (left == NULL && right == NULL)
+            return true;
+
+        // Only one node is NULL
+        if (left == NULL || right == NULL)
+            return false;
+
+        if(left->val != right->val) 
+            return false;
+
+        // Values must match and children must be mirrored
+        //here left=right we are checking
+        return isMirror(left->left, right->right) &&
+               isMirror(left->right, right->left);
+    }
+
+    bool isSymmetric(TreeNode* root) {
+        if (root == NULL)
+            return true;
+        // else case process the subtress
+        return isMirror(root->left, root->right);
+    }
+};
 
