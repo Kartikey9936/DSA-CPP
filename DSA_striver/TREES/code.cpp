@@ -164,3 +164,44 @@ public:
     }
 };
 
+
+leetcode max width
+https://leetcode.com/problems/maximum-width-of-binary-tree/
+int nhi , unsigned long long lagana h 
+class Solution {
+public:
+    int widthOfBinaryTree(TreeNode* root) {
+        queue<pair<TreeNode*,unsigned long long>>q;
+        unsigned long long ans =0;
+        if(root == NULL) return 0;
+        q.push({root,0});
+        while(!q.empty()){
+            int size =  q.size();
+            unsigned long long mini = q.front().second;
+            unsigned long long first,last;
+            for(int i =0;i<size;i++){
+                unsigned long long curr_index = q.front().second - mini;
+                TreeNode* node = q.front().first;
+                q.pop();
+                if(i==0) first = curr_index;
+                if(i == size-1) last = curr_index;
+                if(node->left){
+                    q.push({node->left,curr_index*2+1});
+                }
+                if(node->right){
+                    q.push({node->right,curr_index*2+2});
+                }
+                
+
+
+            }
+            ans = max(ans,last-first+1);
+
+
+        }
+        return ans;
+
+
+        
+    }
+};
