@@ -57,3 +57,23 @@ class Solution {
 };
 
 // //////////////////////////////////////////
+
+class Solution {
+  public:
+    int findMaxFork(Node* root, int k) {
+        // code here
+        int floor = -1;
+              while(root){
+                  if(root->data == k) return k;
+                  if(root->data>k){
+                      
+                      root = root->left;
+                  }
+                  else{
+                      floor = root->data;// just one line is changed
+                      root = root->right;
+                  }
+              }
+              return floor;
+    }
+};
