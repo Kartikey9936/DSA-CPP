@@ -77,3 +77,54 @@ class Solution {
               return floor;
     }
 };
+
+////////////////////////////////////////////////delete node in BST //////////////////////
+class Solution {
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        TreeNode *dummy = root;
+        if(root == NULL) return NULL;
+        if(root->val == key) return helper(root);
+
+        while(root != NULL){
+            if(root->val>key){
+                if(root->left != NULL && root->left->val == key){
+                    root->left = helper(root->left);
+                }
+                else{
+                    root = root->left;
+                }
+            }
+            else{
+                if(root->right != NULL && root->right->val == key){
+                    root->right = helper(root->right);
+                }
+                else{
+                    root = root->right;
+                }
+            }
+        }
+        return dummy;   
+    }
+    TreeNode* helper(TreeNode* root){//this is node which we want to delete
+        if(root->left == NULL){
+            return root->right;
+        }
+        if(root->right == NULL){
+            return root->left;
+        }
+        TreeNode* rightchild = root->right;
+        TreeNode* leftlastright = find(root->left);
+        leftlastright->right = rightchild;
+        return root->left;
+
+    }
+    TreeNode* find(TreeNode* root){
+        if(root->right == NULL){
+            return root;
+        }
+        else{
+            return find(root->right);
+        }
+
+    }
