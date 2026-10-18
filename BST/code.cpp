@@ -128,3 +128,72 @@ public:
         }
 
     }
+
+
+kth smallest in bst;
+just traverse add a counter
+
+class Solution {
+public:
+    void inorder(TreeNode* root, int k, int &count, int &ans){
+        if(root == NULL) return;
+        inorder(root->left,k,count,ans);
+        count++;
+        if(count==k){
+            ans =root->val;
+            return;
+        }
+        inorder(root->right,k,count,ans);
+    
+    }
+
+    int kthSmallest(TreeNode* root, int k) {
+        int count =0;
+        int ans =-1;
+        inorder(root, k, count, ans);
+        return ans;
+
+        
+
+
+        
+    }
+};
+
+find BT OR BST- traverse inorder then save all value in vector,then check in vector all values should inc ;
+2-- by range of all the node in bst
+
+class Solution {
+public:
+      void inorder(TreeNode* root,vector<int>& ans){
+        if(root ==NULL) return;
+        inorder(root->left,ans);
+        ans.push_back(root->val);
+        inorder(root->right,ans);
+      }
+    // bool helper(TreeNode* root,long long minval,long long maxval){//this will be bool;
+    //     if(root == NULL) return true;
+    //     if(root->val>=maxval || root->val<=minval) return false;
+    //     return helper(root->left, minval, root->val) && 
+    //     helper(root->right,root->val,maxval);
+
+    // }
+
+
+    bool isValidBST(TreeNode* root) {
+        vector<int>ans;
+        inorder(root, ans);//we called the function to traversal
+        for(int i =1;i<ans.size();i++){
+            if(ans[i]<=ans[i-1]){
+                return false;
+            }
+            
+        }
+        return true;
+
+        // return helper(root, LLONG_MIN, LLONG_MAX);
+
+        
+    }
+    
+};
