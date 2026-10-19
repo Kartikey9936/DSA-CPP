@@ -681,4 +681,41 @@ for (int i = 0; i < n; i++) {
 }
 
 ---------------------------------------------------------------------------------------
+leetcode 2913;
+class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        int n = nums.size();
+        vector<int>ans;
+        // sort(nums.begin(),nums.end());
+        // for(int i =0;i<n;i++){
+        //     if(nums[i]==target){
+        //         ans.push_back(i);
+
+        //     }
+
+        // }
+        // return ans;
+        int smaller =0;
+        int equal =0;
+        for(int i =0;i<n;i++){
+            if(nums[i]<target){
+                smaller++;
+                
+            }
+            
+            if(nums[i]==target){
+                equal++;
+            }
+
+        }
+        int size = smaller+equal-1;
+        for(int i =smaller;i<=size;i++){
+            ans.push_back(i);
+        }
+        return ans ;
+       
+        
+    }
+};
 
