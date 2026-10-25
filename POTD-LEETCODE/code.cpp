@@ -719,3 +719,36 @@ public:
     }
 };
 
+leetcode 2409
+
+class Solution {
+
+public:
+    
+    int date2days(string s){
+        int monthdays[] ={31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        // string month = s.substr(0,2);
+        // string days = s.substr(3,2);
+        int month = stoi(s.substr(0, 2));
+        int day = stoi(s.substr(3, 2));
+        int total = day;
+        for(int i =0;i<month-1;i++){
+            total += monthdays[i];
+        }
+        return total;
+     
+    }
+    
+    int countDaysTogether(string arriveAlice, string leaveAlice, string arriveBob, string leaveBob) {
+        int start = max(date2days(arriveAlice),date2days(arriveBob));
+        int end = min(date2days(leaveAlice),date2days(leaveBob));
+        if(end -start<0){
+            return 0;
+        }
+        return (end - start+1); // end points ko bhi add karna padega +1 kiya
+
+
+        
+    }
+    
+};
